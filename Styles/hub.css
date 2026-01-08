@@ -1,0 +1,18 @@
+/* Mode hub specific styling */
+.gf-hub-root{
+  position:relative;
+  z-index:1;
+}
+
+.gf-hub-header{
+  margin-bottom:16px;
+}
+.gf-hub-title{
+  font-size:22px;
+  font-weight:700;
+}
+.gf-hub-sub{
+  font-size:13px;
+  color:var(--muted);
+  margin-top:4px;
+}
