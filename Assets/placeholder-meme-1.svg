@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="300" viewBox="0 0 600 300">
+  <rect width="100%" height="100%" fill="#041029"/>
+  <g transform="translate(40,40)">
+    <rect width="520" height="220" rx="18" fill="#06203a"/>
+    <text x="260" y="120" font-family="Space Grotesk, sans-serif" font-size="28" fill="#25f4ff" text-anchor="middle">
+      GIBBERFISH MEME
+    </text>
+    <text x="260" y="160" font-family="Fira Mono, monospace" font-size="14" fill="#a0cfff" text-anchor="middle">
+      When your chaos actually runs
+    </text>
+  </g>
+</svg>
