@@ -9,6 +9,7 @@ Modtitle.style.color = "red";
 const ModtitleDes = document.createElement("h1");
 ModtitleDes.textContent = "An added mod by Ian";
 ModtitleDes.style.textAlign = "center";
+ModtitleDes.style.color = "white";
 
 document.body.appendChild(Modtitle);
 document.body.appendChild(ModtitleDes);
