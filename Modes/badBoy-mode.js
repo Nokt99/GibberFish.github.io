@@ -11,10 +11,14 @@ const ModtitleDes = document.createElement("h1");
 ModtitleDes.textContent = "An added Gibberfish mod by Ian";
 ModtitleDes.style.textAlign = "center";
 ModtitleDes.style.color = "white";
+const ModDisableWrap = document.createElement("div"); //Adult
+ModDisableWrap.align = "Assets/Badboy_disable.png";
 const ModDisable = document.createElement("img");
-
+ModDisable.src = "Assets/Badboy_disable.png";
 
 document.body.appendChild(Modtitle);
 document.body.appendChild(ModtitleDes);
+document.body.appendChild(ModDisableWrap);
+ModDisableWrap.appendChild(ModDisable);
 
 //In Progress
