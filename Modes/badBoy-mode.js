@@ -17,6 +17,16 @@ const ModDisable = document.createElement("img");
 ModDisable.src = "Assets/Badboy_disable.png";
 ModDisable.width = "100";
 ModDisable.height = "100";
+/*Reminder for Me
+Put something cool above the Mod Console
+*/
+const ModConsoleWrap = document.createElement("div");
+ModConsoleWrap.align = "center";
+const ModConsole = document.createElement("input");
+ModConsole.type = "text";
+ModConsole.style = "background-color: black; color: white; font-family: Monospace;";
+const ModConsoleGO = document.createElement("input");
+ModConsoke
 
 document.body.appendChild(Modtitle);
 document.body.appendChild(ModtitleDes);
