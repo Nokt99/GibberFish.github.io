@@ -11,6 +11,7 @@ const ModtitleDes = document.createElement("h1");
 ModtitleDes.textContent = "An added Gibberfish mod by Ian";
 ModtitleDes.style.textAlign = "center";
 ModtitleDes.style.color = "white";
+const ModDisable = document.createElement
 
 
 document.body.appendChild(Modtitle);
