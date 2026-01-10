@@ -1,6 +1,6 @@
 <html>
   <body>
-      <img src="Gibberfish_Icon.png">
+      <img src="Assets/Gibberfish_Icon.png">
     <h1>Welcome to Gibberfish!</h1>
     <h5>©Copyright 2026</h5>
     <h3>Gibberfish is a non-famous coding language developed by Gibber. Gibberfish has is a coding language with combining, trolling, and chaos. Gibberfish is a coding language that's been developed for the bored. To use Gibberfish please know that if you are under thirteen then you shouldn't turn a certian mod.</h3>
