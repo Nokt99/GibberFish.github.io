@@ -1,5 +1,5 @@
 //Mine may be a little diffrent than yours so you can change it a bit.
-var pageBefore = document.getElement
+var pageBefore = document.getElementById("page");
 document.body.style.backgroundImage = "url('https://img.freepik.com/premium-photo/cracked-wall-background-cracked-dry-ground_553949-249.jpg')";
 const Modtitle = document.createElement("h1");
 Modtitle.textContent = "BAD BOY";
