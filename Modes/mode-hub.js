@@ -23,7 +23,7 @@ window.GF.createHubMode = function (container, opts) {
     <div class="gf-mode-card-title">Chaos Mode</div>
     <div class="gf-mode-card-desc">
       Type letters and watch them explode into memes, logs, fake calls, and glitches.
-      The fish decides what you get.
+      Fate Decides What You Get
     </div>
   `;
   var chaosFooter = document.createElement('div');
