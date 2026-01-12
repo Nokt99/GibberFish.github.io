@@ -1,9 +1,10 @@
 // ui/layout.js
-export function createLayout(root) {
+window.GF = window.GF || {};
+
+window.GF.createLayout = function (root) {
   const shell = document.createElement('div');
   shell.className = 'gf-shell';
 
-  // topbar
   const topbar = document.createElement('div');
   topbar.className = 'gf-topbar';
 
@@ -47,11 +48,9 @@ export function createLayout(root) {
   const topRight = document.createElement('div');
   topRight.className = 'gf-top-right';
 
-  // mode buttons container
   const modeButtons = document.createElement('div');
   modeButtons.className = 'gf-mode-buttons';
 
-  // meter
   const meterWrap = document.createElement('div');
   meterWrap.className = 'gf-meter-wrap';
   const meterLabel = document.createElement('div');
@@ -65,7 +64,6 @@ export function createLayout(root) {
   meterWrap.appendChild(meterLabel);
   meterWrap.appendChild(meter);
 
-  // troll toggle (only used in chaos mode, but here for layout)
   const trollBtn = document.createElement('button');
   trollBtn.className = 'gf-troll-toggle';
   trollBtn.id = 'gf-troll-toggle';
@@ -80,11 +78,9 @@ export function createLayout(root) {
   topbar.appendChild(topLeft);
   topbar.appendChild(topRight);
 
-  // main
   const main = document.createElement('div');
   main.className = 'gf-main';
 
-  // bubbles
   const bubbles = document.createElement('div');
   bubbles.className = 'gf-bubbles';
   for (let i = 0; i < 8; i++) {
@@ -105,15 +101,15 @@ export function createLayout(root) {
   root.appendChild(shell);
 
   return {
-    shell,
-    main,
-    backBtn,
-    modeButtons,
-    meterFill,
-    trollBtn,
-    tagline,
-    clearMain() {
+    shell: shell,
+    main: main,
+    backBtn: backBtn,
+    modeButtons: modeButtons,
+    meterFill: meterFill,
+    trollBtn: trollBtn,
+    tagline: tagline,
+    clearMain: function () {
       main.innerHTML = '';
     }
   };
-}
+};
