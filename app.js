@@ -2,15 +2,13 @@
 window.GF = window.GF || {};
 
 (function () {
-  const GF = window.GF;
-
   const root = document.getElementById('app-root');
 
-  // App layout
+  // Build layout + navigation
   const layout = GF.createLayout(root);
   const nav = GF.createNavigation(layout);
 
-  // Lazy
+  // Lazy-loaded modes
   let hubMode = null;
   let chaosMode = null;
   let codeMode = null;
@@ -22,10 +20,14 @@ window.GF = window.GF || {};
     if (name === 'hub') {
       if (!hubMode) hubMode = GF.createHubMode(layout.main, { onSelectMode });
       hubMode.show();
-    } else if (name === 'chaos') {
+    }
+
+    if (name === 'chaos') {
       if (!chaosMode) chaosMode = GF.createChaosMode(layout.main, nav);
       chaosMode.show();
-    } else if (name === 'code') {
+    }
+
+    if (name === 'code') {
       if (!codeMode) codeMode = GF.createCodeMode(layout.main, nav);
       codeMode.show();
     }
@@ -35,9 +37,10 @@ window.GF = window.GF || {};
     showMode(name);
   }
 
-  nav.onBack(function () { showMode('hub'); });
-  nav.onModeSelect(function (name) { showMode(name); });
+  // Navigation events
+  nav.onBack(() => showMode('hub'));
+  nav.onModeSelect((name) => showMode(name));
 
-  // start at hub
+  // Start at the hub
   showMode('hub');
 })();
