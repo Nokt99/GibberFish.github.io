@@ -1,77 +1,116 @@
 // ui/cards.js
 window.GF = window.GF || {};
 
-window.GF.renderArtifactCard = function (artifact) {
-  var el = document.createElement('div');
-  el.className = 'gf-card-item';
+GF.renderCard = function (artifact) {
+  const card = document.createElement('div');
+  card.className = 'gf-card gf-card-' + artifact.type;
 
-  var icon = document.createElement('div');
-  icon.className = 'gf-card-icon';
-  icon.textContent = artifact.type[0].toUpperCase();
+  // Title
+  const title = document.createElement('div');
+  title.className = 'gf-card-title';
+  title.textContent = artifact.title || artifact.type;
+  card.appendChild(title);
 
-  var body = document.createElement('div');
+  // Content container
+  const body = document.createElement('div');
   body.className = 'gf-card-body';
 
-  var title = document.createElement('div');
-  title.className = 'gf-card-title';
-  title.textContent = (artifact.title || '') + ' (' + (artifact.letter || '?') + ')';
+  // Render by type
+  switch (artifact.type) {
+    case 'meme':
+      renderMeme(body, artifact);
+      break;
 
-  var meta = document.createElement('div');
-  meta.className = 'gf-card-meta';
-  meta.textContent = artifact.type + ' • ' + (artifact.rarity || 'common');
+    case 'code':
+      renderCode(body, artifact);
+      break;
 
-  var content = document.createElement('div');
-  content.className = 'gf-card-content';
+    case 'printer':
+      renderPrinter(body, artifact);
+      break;
 
-  if (artifact.type === 'meme') {
-    content.textContent = (artifact.payload && artifact.payload.caption) || 'meme';
-  } else if (artifact.type === 'code') {
-    var pre = document.createElement('pre');
-    pre.style.fontFamily = 'var(--mono)';
-    pre.style.fontSize = '11px';
-    pre.textContent = (artifact.payload && artifact.payload.code) || '// no code';
-    content.appendChild(pre);
-  } else if (artifact.type === 'printer') {
-    content.textContent = (artifact.payload && artifact.payload.text) || 'printer output';
-  } else if (artifact.type === 'call') {
-    content.textContent = 'Caller: ' + ((artifact.payload && artifact.payload.name) || 'Unknown');
-  } else if (artifact.type === 'glitch') {
-    content.textContent = 'Glitch intensity: ' + ((artifact.payload && artifact.payload.intensity) || 0.3);
-  } else if (artifact.type === 'rareProgram') {
-    content.textContent = (artifact.payload && artifact.payload.description) || 'Rare program';
+    case 'call':
+      renderCall(body, artifact);
+      break;
+
+    case 'glitch':
+      renderGlitch(body, artifact);
+      break;
+
+    case 'rareProgram':
+      renderRareProgram(body, artifact);
+      break;
+
+    default:
+      body.textContent = JSON.stringify(artifact.payload);
   }
 
-  body.appendChild(title);
-  body.appendChild(meta);
-  body.appendChild(content);
-
-  el.appendChild(icon);
-  el.appendChild(body);
-
-  return el;
+  card.appendChild(body);
+  return card;
 };
 
-window.GF.renderLogCard = function (msg) {
-  var el = document.createElement('div');
-  el.className = 'gf-card-item';
+// -----------------------------
+// RENDERERS
+// -----------------------------
 
-  var icon = document.createElement('div');
-  icon.className = 'gf-card-icon';
-  icon.textContent = 'L';
+function renderMeme(body, a) {
+  const caption = document.createElement('div');
+  caption.className = 'gf-meme-caption';
+  caption.textContent = a.payload.caption || '(no caption)';
+  body.appendChild(caption);
+}
 
-  var body = document.createElement('div');
-  body.className = 'gf-card-body';
-  var title = document.createElement('div');
-  title.className = 'gf-card-title';
-  title.textContent = 'Log';
-  var meta = document.createElement('div');
-  meta.className = 'gf-card-meta';
-  meta.textContent = msg;
+function renderCode(body, a) {
+  const pre = document.createElement('pre');
+  pre.className = 'gf-code-block';
+  pre.textContent = a.payload.code || '// empty';
+  body.appendChild(pre);
+}
 
-  body.appendChild(title);
-  body.appendChild(meta);
-  el.appendChild(icon);
-  el.appendChild(body);
+function renderPrinter(body, a) {
+  const text = document.createElement('div');
+  text.className = 'gf-printer-text';
+  text.textContent = a.payload.text || '(blank)';
+  body.appendChild(text);
+}
 
-  return el;
+function renderCall(body, a) {
+  const caller = document.createElement('div');
+  caller.className = 'gf-call-name';
+  caller.textContent = a.payload.name || 'Unknown Caller';
+  body.appendChild(caller);
+
+  const status = document.createElement('div');
+  status.className = 'gf-call-status';
+  status.textContent = 'Incoming…';
+  body.appendChild(status);
+}
+
+function renderGlitch(body, a) {
+  const g = document.createElement('div');
+  g.className = 'gf-glitch-box';
+  g.textContent = 'GLITCH x' + (a.payload.intensity || 1);
+  body.appendChild(g);
+}
+
+function renderRareProgram(body, a) {
+  const desc = document.createElement('div');
+  desc.className = 'gf-rare-desc';
+  desc.textContent = a.payload.description || 'Unknown program';
+  body.appendChild(desc);
+}
+
+// -----------------------------
+// LOG CARDS (for Code Mode)
+// -----------------------------
+GF.renderLogCard = function (msg, type) {
+  const card = document.createElement('div');
+  card.className = 'gf-log-card ' + (type || 'info');
+
+  const text = document.createElement('div');
+  text.className = 'gf-log-text';
+  text.textContent = msg;
+
+  card.appendChild(text);
+  return card;
 };
