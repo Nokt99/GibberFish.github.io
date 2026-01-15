@@ -1,20 +1,49 @@
 // ui/renderer.js
 window.GF = window.GF || {};
 
-window.GF.createChaosRenderer = function (outputEl) {
-  function addArtifact(artifact) {
-    var card = window.GF.renderArtifactCard(artifact);
-    outputEl.prepend(card);
-  }
+GF.createRenderer = function (container) {
+  const root = container;
 
-  function addLog(message) {
-    var card = window.GF.renderLogCard(message);
-    outputEl.prepend(card);
-  }
-
+  // Clear all content
   function clear() {
-    outputEl.innerHTML = '';
+    root.innerHTML = '';
   }
 
-  return { addArtifact: addArtifact, addLog: addLog, clear: clear };
+  // Render a single card with animation
+  function renderCard(cardEl) {
+    cardEl.classList.add('gf-card-appear');
+    root.appendChild(cardEl);
+
+    // Force reflow for animation
+    void cardEl.offsetWidth;
+    cardEl.classList.add('gf-card-appear-active');
+
+    scrollToBottom();
+  }
+
+  // Render multiple cards
+  function renderCards(list) {
+    list.forEach((card) => renderCard(card));
+  }
+
+  // Render a log card (Code Mode)
+  function log(message, type) {
+    const card = GF.renderLogCard(message, type);
+    renderCard(card);
+  }
+
+  // Auto-scroll to bottom
+  function scrollToBottom() {
+    setTimeout(() => {
+      root.scrollTop = root.scrollHeight;
+    }, 10);
+  }
+
+  return {
+    clear,
+    renderCard,
+    renderCards,
+    log,
+    scrollToBottom
+  };
 };
