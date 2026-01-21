@@ -634,10 +634,10 @@ GF.createCodeMode = function (container, nav) {
   function maybeTroll() {
     if (Math.random() < 0.2) {
       const msg = [
-        'The fish is watching.',
-        'Suspicious script detected.',
-        'GibberFish is amused.',
-        'Your code smells like seaweed.'
+        'I'm Watching You😈.',
+        'ITS THE FBI OPEN UP.',
+        'GIBBERFISH ISNT PLEASED YOU WILL NOW SUB TO @ceuNOW and @hipchip-p2n on youtube or else you DIE.',
+        'You didnt pay your taxes, here are your expenses: 5073867387589672098000000999999$ pay now or else termination.'
       ];
 
       renderer.log(msg[Math.floor(Math.random() * msg.length)], 'troll');
