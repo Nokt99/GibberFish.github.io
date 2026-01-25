@@ -20,6 +20,9 @@
   padding: 10px;
   font-family: "JetBrains Mono", monospace;
   resize: vertical;
+  position: relative;
+  z-index: 9999;
+  pointer-events: auto;
 }
 
 .gf-code-run-btn {
@@ -48,6 +51,24 @@
   background: radial-gradient(circle at top, #050814 0, #02030a 40%, #000000 100%);
   border-radius: 10px;
   border: 1px solid #1f2937;
+}
+
+.gf-code-output > div,
+.gf-code-output > * {
+  pointer-events: none;
+}
+
+.gf-code-output .gf-card,
+.gf-code-output .gf-code-image-card,
+.gf-code-output .gf-code-iframe-card,
+.gf-code-output .gf-code-says-card,
+.gf-code-output .gf-code-audio-card,
+.gf-code-output .gf-code-lore-card,
+.gf-code-output .gf-code-entity-card,
+.gf-code-output .gf-code-fish-card,
+.gf-code-output .gf-code-portal-card,
+.gf-code-output .gf-code-ritual-card {
+  pointer-events: auto;
 }
 
 /* Log cards */
@@ -517,53 +538,4 @@
 
 @keyframes gf-explode {
   0% { transform: scale(1); opacity: 1; filter: blur(0); }
-  50% { transform: scale(1.2); opacity: 0.8; filter: blur(2px); }
-  100% { transform: scale(0.2); opacity: 0; filter: blur(6px); }
-}
-
-@keyframes gf-portal-spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-@keyframes gf-blackhole-pulse {
-  0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(15, 23, 42, 0.9); }
-  50% { transform: scale(1.08); box-shadow: 0 0 60px rgba(15, 23, 42, 1); }
-}
-
-@keyframes gf-blackhole-ring {
-  0% { transform: scale(1); opacity: 0.8; }
-  100% { transform: scale(1.4); opacity: 0; }
-}
-
-@keyframes gf-sucked-into-hole {
-  0% { transform: translate(0, 0) scale(1); opacity: 1; }
-  100% { transform: translate(0, -40px) scale(0); opacity: 0; }
-}
-
-@keyframes gf-screen-corrupt {
-  0% { filter: hue-rotate(0deg) contrast(1); transform: translate(0, 0); }
-  25% { filter: hue-rotate(40deg) contrast(1.2); transform: translate(-1px, 1px); }
-  50% { filter: hue-rotate(-40deg) contrast(1.4); transform: translate(1px, -1px); }
-  75% { filter: hue-rotate(20deg) contrast(1.1); transform: translate(-1px, -1px); }
-  100% { filter: hue-rotate(0deg) contrast(1); transform: translate(0, 0); }
-}
-
-@keyframes gf-weather-fall {
-  0% { transform: translateY(-40px); opacity: 0; }
-  10% { opacity: 1; }
-  100% { transform: translateY(120vh); opacity: 0; }
-}
-
-@keyframes gf-ritual-spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-@keyframes gf-glitch-god {
-  0% { transform: translate(-50%, -50%) skew(0deg, 0deg); }
-  25% { transform: translate(-49%, -51%) skew(2deg, -2deg); }
-  50% { transform: translate(-51%, -49%) skew(-2deg, 2deg); }
-  75% { transform: translate(-50%, -50%) skew(1deg, -1deg); }
-  100% { transform: translate(-50%, -50%) skew(0deg, 0deg); }
-}
+  50% { transform: scale(1
