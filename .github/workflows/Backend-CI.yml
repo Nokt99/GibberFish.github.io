@@ -1,0 +1,102 @@
+name: GibberFish Backend CI
+
+on:
+  push:
+    paths:
+      - "backend/**"
+      - ".github/workflows/backend-ci.yml"
+  pull_request:
+    paths:
+      - "backend/**"
+
+jobs:
+  backend-ci:
+    name: Backend Build & Validate
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: backend
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: backend/package-lock.json
+
+      - name: Install backend dependencies
+        run: npm install
+
+      - name: Validate backend file structure
+        run: |
+          REQUIRED_FILES=(
+            "server.js"
+            "routes/users.js"
+            "routes/premium.js"
+            "routes/events.js"
+            "lib/period.js"
+            "lib/store.js"
+            "native/wheel_rng.cpp"
+          )
+          for FILE in "${REQUIRED_FILES[@]}"; do
+            if [ ! -f "$FILE" ]; then
+              echo "Missing required backend file: $FILE"
+              exit 1
+            fi
+          done
+          echo "✔ All required backend files are present."
+
+      - name: Build native C++ helper
+        run: |
+          mkdir -p native/build
+          g++ native/wheel_rng.cpp -o native/build/wheel_rng
+          echo "✔ C++ wheel RNG compiled successfully."
+
+      - name: Run backend syntax check
+        run: |
+          node -c server.js
+          node -c routes/users.js
+          node -c routes/premium.js
+          node -c routes/events.js
+          node -c lib/period.js
+          node -c lib/store.js
+          echo "✔ All backend JS files passed syntax check."
+
+      - name: Start backend server (background)
+        run: |
+          node server.js &
+          sleep 3
+
+      - name: Verify backend health endpoint
+        run: |
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:4000/api/health)
+          if [ "$STATUS" != "200" ]; then
+            echo "Backend health check failed (HTTP $STATUS)"
+            exit 1
+          fi
+          echo "✔ Backend health endpoint OK."
+
+      - name: Verify backend routes exist
+        run: |
+          declare -a ROUTES=(
+            "/api/users/sync"
+            "/api/premium/status/test"
+            "/api/events/participants/current"
+            "/api/events/links/current"
+          )
+          for ROUTE in "${ROUTES[@]}"; do
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:4000$ROUTE)
+            if [ "$STATUS" = "404" ]; then
+              echo "Missing backend route: $ROUTE"
+              exit 1
+            fi
+            echo "✔ Route exists: $ROUTE"
+          done
+
+      - name: Backend CI Completed
+        run: echo "GibberFish backend validated successfully!"
