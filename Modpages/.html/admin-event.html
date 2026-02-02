@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GibberFish Admin Event</title>
+  <link rel="stylesheet" href="admin-event.css">
+</head>
+<body>
+  <div id="admin-event-root">
+    <div class="admin-section">
+      <h2>Round 1 — Big Spin</h2>
+      <button id="start-round1-btn">Start Round 1</button>
+      <div id="round1-container"></div>
+      <h3>Selected (up to 10):</h3>
+      <ul id="round1-winners"></ul>
+      <button id="to-round2-btn">Go to Round 2</button>
+    </div>
+
+    <div class="admin-section">
+      <h2>Round 2 — Finalist Spin</h2>
+      <div id="round2-container"></div>
+      <div id="finalist-display"></div>
+      <button id="to-final-btn">Go to Final Wheel</button>
+    </div>
+
+    <div class="admin-section">
+      <h2>Final Prize Wheel</h2>
+      <div id="final-container"></div>
+      <div id="final-result"></div>
+    </div>
+  </div>
+
+  <script src="user-tracking.js"></script>
+  <script src="wheel.js"></script>
+  <script src="admin-event.js"></script>
+</body>
+</html>
