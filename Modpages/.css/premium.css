@@ -1,0 +1,58 @@
+#premium-mode-btn {
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  color: #ffffff;
+  background-image: linear-gradient(90deg, #ff4b8b, #ffb84b, #4bffb8, #4b8bff, #b84bff);
+  background-size: 300% 100%;
+  animation: premium-rainbow 4s linear infinite;
+}
+
+@keyframes premium-rainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+#premium-page {
+  max-width: 600px;
+  margin: 40px auto;
+  text-align: center;
+  color: #ffffff;
+}
+
+#premium-page h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.premium-price {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.premium-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.premium-features li {
+  margin: 6px 0;
+  font-size: 16px;
+}
+
+.premium-subscribe-btn {
+  padding: 10px 24px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  background: #ff4b8b;
+  color: #ffffff;
+}
