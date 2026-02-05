@@ -14,7 +14,7 @@
 static std::vector<std::string> admins() { 
     std::vector<std::string> v; 
     v.push_back("zakariyah6204@mytusd.org"); 
-    v.push_back("daniela4354@mytusd.org"); 
+    v.push_back("peppap1234@gmail.com"); 
     v.push_back("ianv6207@mytusd.org"); 
     return v; 
 } 
