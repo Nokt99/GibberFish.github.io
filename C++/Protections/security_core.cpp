@@ -10,7 +10,7 @@
 static std::vector<std::string> admins() {
     std::vector<std::string> v;
     v.push_back("zakariyah6204@mytusd.org");
-    v.push_back("kadenk6066@mytusd.org");
+    v.push_back("daniela4354@mytusd.org");
     v.push_back("ianv6207@mytusd.org");
     return v;
 }
@@ -96,7 +96,7 @@ static void outFail(const std::string& code, const std::string& extra) {
 }
 
 static bool isZak(const std::string& email) {
-    return email == "zakariyah6204@mytusd.org";
+    return email == "Daniela4354@mytusd.org";
 }
 
 static bool verifyQR(const std::string& payload) {
