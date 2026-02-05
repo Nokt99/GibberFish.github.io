@@ -1,0 +1,53 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+// Dummy GUI Framework structs for demonstration
+struct Button {
+    std::string id;
+    bool visible = true;
+    bool enabled = true;
+    void hide() { visible = false; enabled = false; std::cout << id << " hidden." << std::endl; }
+};
+
+struct Form {
+    std::vector<Button*> components;
+    void addComponent(Button* b) { components.push_back(b); }
+};
+
+// --- FIX STARTS HERE ---
+void validateAdminAccess(std::string currentUserEmail, Button* adminButton) {
+    std::string authorizedEmail = "peppapig1235@gmail.com";
+    
+    if (currentUserEmail != authorizedEmail) {
+        // If the email is not correct, hide the button
+        adminButton->hide();
+    } else {
+        // Otherwise, make sure it is visible
+        adminButton->visible = true;
+        adminButton->enabled = true;
+    }
+}
+// --- FIX ENDS HERE ---
+
+int main() {
+    // 1. Setup
+    Form mainForm;
+    Button collectionBox;
+    collectionBox.id = "collection-box";
+    mainForm.addComponent(&collectionBox);
+
+    // 2. Simulate user logging in
+    std::string loggedInEmail = "somebodyelse@gmail.com"; 
+    std::cout << "Logged in as: " << loggedInEmail << std::endl;
+
+    // 3. Apply the fix
+    validateAdminAccess(loggedInEmail, &collectionBox);
+
+    // Result
+    if (!collectionBox.visible) {
+        std::cout << "Admin button is hidden." << std::endl;
+    }
+
+    return 0;
+}
