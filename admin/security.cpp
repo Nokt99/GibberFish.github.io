@@ -9,7 +9,7 @@
  */
 
 // Global constant for the admin email
-const std::string ADMIN_EMAIL = "peppapig1235@gmail.com";
+const std::string ADMIN_EMAIL = "zakariyah6204@mytusd.org";
 
 // Helper function to normalize email strings (handles Case Sensitivity)
 std::string normalizeEmail(std::string email) {
